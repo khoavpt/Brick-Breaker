@@ -1,0 +1,2 @@
+g++ -c brick_breaker.cpp -I"C:\Users\LENOVO\OneDrive\Documents\SFML-2.5.1\include"
+g++ brick_breaker.o -o brick_breaker -L"C:\Users\LENOVO\OneDrive\Documents\SFML-2.5.1\lib" -lsfml-graphics -lsfml-window -lsfml-system
