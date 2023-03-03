@@ -2,7 +2,7 @@
 #include <string>
 
 #include "EndState.hpp"
-#include "playState.hpp"
+#include "PlayState.hpp"
 
 EndState::EndState(Game* game_, int gamePoint)
 {

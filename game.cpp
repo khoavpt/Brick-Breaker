@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 
-#include "state.hpp"
-#include "game.hpp"
+#include "State.hpp"
+#include "Game.hpp"
 
 Game::Game()
 {

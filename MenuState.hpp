@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "state.hpp"
-#include "playState.hpp"
-#include "game.hpp"
+#include "State.hpp"
+#include "PlayState.hpp"
+#include "Game.hpp"
 class MenuState : public State
 {
     public:

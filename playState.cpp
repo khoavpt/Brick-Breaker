@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "MenuState.hpp"
-#include "playState.hpp"
+#include "PlayState.hpp"
 #include "EndState.hpp"
 
 

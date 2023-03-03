@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "Game.hpp"
 #include "MenuState.hpp"
 
 int main()

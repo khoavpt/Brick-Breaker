@@ -3,7 +3,7 @@
 #include <vector>
 #include <cmath>
 
-#include "ball.hpp"
+#include "Ball.hpp"
 
 using namespace std;
 

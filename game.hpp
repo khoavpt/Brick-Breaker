@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <stack>
-#include "state.hpp"
+#include "State.hpp"
 
 class State;
 

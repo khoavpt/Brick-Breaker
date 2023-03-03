@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 
-#include "bricks.hpp"
+#include "Bricks.hpp"
 
 using namespace std;
 

@@ -1,7 +1,7 @@
 #include <SFML\Graphics.hpp>
 #include <vector>
 
-#include "bricks.hpp"
+#include "Bricks.hpp"
 
 Brick::Brick(int type, sf::Vector2f postition)
 {

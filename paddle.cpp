@@ -2,7 +2,7 @@
 #include <SFML\Graphics.hpp>
 #include <cmath>
 
-#include "paddle.hpp"
+#include "Paddle.hpp"
 
 Paddle::Paddle()
 {

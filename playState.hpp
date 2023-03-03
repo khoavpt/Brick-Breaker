@@ -3,10 +3,10 @@
 #include <iostream>
 #include <vector>
 
-#include "state.hpp"
-#include "game.hpp"
-#include "paddle.hpp"
-#include "ball.hpp"
+#include "State.hpp"
+#include "Game.hpp"
+#include "Paddle.hpp"
+#include "Ball.hpp"
 
 class PlayState : public State
 {
