@@ -1,2 +1,3 @@
-g++ -c brick_breaker.cpp -I"C:\Users\LENOVO\OneDrive\Documents\SFML-2.5.1\include"
-g++ brick_breaker.o -o brick_breaker -L"C:\Users\LENOVO\OneDrive\Documents\SFML-2.5.1\lib" -lsfml-graphics -lsfml-window -lsfml-system
+g++ -c main.cpp game.cpp MenuState.cpp playState.cpp ball.cpp bricks.cpp paddle.cpp EndState.cpp -I"C:\Users\LENOVO\OneDrive\Documents\SFML-2.5.1\include"
+
+g++ main.o game.o playState.o MenuState.o ball.o bricks.o paddle.o EndState.o -o main -L"C:\Users\LENOVO\OneDrive\Documents\SFML-2.5.1\lib" -lsfml-graphics -lsfml-window -lsfml-system
