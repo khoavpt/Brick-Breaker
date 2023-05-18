@@ -1,6 +1,6 @@
 #pragma once
 
-const float BOARD_HEIGHT = 800.0f;
+const float BOARD_HEIGHT = 960.0f;
 const float BOARD_WIDTH = 600.0f;
 
 const float BALL_RADIUS = 10.0f;

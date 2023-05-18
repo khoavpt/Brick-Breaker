@@ -1,27 +1,11 @@
 #include <SFML/Graphics.hpp>
-#include <string>
 
-#include "State.hpp"
+#include "States\State.hpp"
 #include "Game.hpp"
 
-Game::Game():
-    gameplayHalf(sf::Vector2f(600.f, 800.f)),
-    infoHalf(sf::Vector2f(400.f, 800.f))
+Game::Game()
 {
-    window.create(sf::VideoMode(1000.0f, 800.0f), "Many Brick Breaker", sf::Style::Close);
-
-    gameplayHalf.setFillColor(sf::Color::Blue);
-    gameplayHalf.setOutlineThickness(10.0f);
-    gameplayHalf.setOutlineColor(sf::Color::Black);
-
-    infoHalf.setFillColor(sf::Color{160, 160, 160, 255});
-    infoHalf.setPosition(sf::Vector2f(600.f, 0.f));
-
-    font.loadFromFile("static/regular.ttf");
-    fpsCount.setFont(font);
-    fpsCount.setFillColor(sf::Color::Black);
-    fpsCount.setCharacterSize(30);
-    fpsCount.setPosition(sf::Vector2f(680.0f, 100.0f));
+    window.create(sf::VideoMode(600.0f, 960.0f), "Many Brick Breaker", sf::Style::Close);
 }
 
 Game::~Game()
@@ -33,6 +17,25 @@ Game::~Game()
     }
 }
 
+void Game::loadBackgroundImage()
+{
+    if (getActiveState() == nullptr)
+        return;
+
+    std::string backgroundImagePath = getActiveState()->getBackgroundImagePath();
+    if (!backgroundTexture.loadFromFile(backgroundImagePath)) {
+        return;
+    }
+    backgroundSprite.setTexture(backgroundTexture);
+
+    // Get the window size
+    sf::Vector2u windowSize = window.getSize();
+
+    // Scale the sprite to fit the window size
+    backgroundSprite.setScale(static_cast<float>(windowSize.x) / backgroundTexture.getSize().x,
+                              static_cast<float>(windowSize.y) / backgroundTexture.getSize().y);
+}
+
 void Game::popState()
 {
     states.pop();
@@ -41,6 +44,7 @@ void Game::popState()
 void Game::pushState(State* state)
 {
     states.push(state);
+    loadBackgroundImage();
 }
 
 State* Game::getActiveState()
@@ -57,19 +61,17 @@ void Game::gameLoop()
     while(window.isOpen())
     {
         deltaTime = clock.restart().asSeconds();
-        fpsCount.setString("FPS count: " + std::to_string((int)(1 / deltaTime)));
 
         if (getActiveState() == nullptr) continue;
-
+        
         getActiveState()->handleInput();
         getActiveState()->update(deltaTime);
 
-        window.clear(sf::Color(0, 0, 204, 255));
-        window.draw(infoHalf);
-        window.draw(gameplayHalf);
-        window.draw(fpsCount);
+        window.clear();
 
+        window.draw(backgroundSprite);
         getActiveState()->draw();
+        
         window.display();
     }
 }

@@ -1,2 +1,4 @@
-g++ -c main.cpp Game.cpp MenuState.cpp PlayState.cpp Ball.cpp Bricks.cpp Paddle.cpp Wall.cpp EndState.cpp CollisionEvent.cpp -I"C:\Users\LENOVO\OneDrive\Documents\SFML-2.5.1\include"
-g++ main.o Game.o PlayState.o MenuState.o Ball.o Bricks.o Paddle.o Wall.o EndState.o CollisionEvent.o -o main -L"C:\Users\LENOVO\OneDrive\Documents\SFML-2.5.1\lib" -lsfml-graphics -lsfml-window -lsfml-system
+g++ -c main.cpp Game.cpp States\MenuState.cpp States\PlayState.cpp Objects\Ball.cpp Objects\Bricks.cpp Objects\Paddle.cpp Objects\Wall.cpp States\EndState.cpp CollisionEvent.cpp States\PlayStateModel.cpp States\LevelState.cpp Button.cpp -I"C:\Users\LENOVO\OneDrive\Documents\SFML-2.5.1\include"
+g++ main.o Game.o PlayState.o MenuState.o Ball.o Bricks.o Paddle.o Wall.o EndState.o CollisionEvent.o PlayStateModel.o LevelState.o Button.o -o main -L"C:\Users\LENOVO\OneDrive\Documents\SFML-2.5.1\lib" -lsfml-graphics -lsfml-window -lsfml-system
+
+ sf::Color(100, 69, 0, 200), sf::Color(200, 200, 0, 200), sf::Color(200, 0, 0, 200)

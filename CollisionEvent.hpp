@@ -1,6 +1,6 @@
 #pragma once
 #include <queue>
-#include "Ball.hpp"
+#include "Objects/Ball.hpp"
 
 class CollisionEvent
 {

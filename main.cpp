@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "MenuState.hpp"
+#include "States/MenuState.hpp"
 
 int main()
 {

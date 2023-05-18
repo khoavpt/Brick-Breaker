@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <stack>
-#include "State.hpp"
 
 class State;
 
@@ -9,11 +8,6 @@ class Game
 {
     public:
         sf::RenderWindow window;
-
-        // Create views for gameplay and scoreboard
-        sf::RectangleShape gameplayHalf;
-
-        sf::RectangleShape infoHalf;
 
         Game();
         ~Game();
@@ -25,7 +19,8 @@ class Game
     
     private:
         std::stack <State*> states;
-        sf::Font font;
-        sf::Text fpsCount;
-
+        
+        void loadBackgroundImage();
+        sf::Texture backgroundTexture;
+        sf::Sprite backgroundSprite;
 };
