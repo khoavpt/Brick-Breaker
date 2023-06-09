@@ -5,7 +5,7 @@
 #include "State.hpp"
 #include "../Game.hpp"
 #include "../Objects/Paddle.hpp"
-#include "../Objects/Bricks.hpp"
+#include "../Objects/Brick.hpp"
 #include "../Objects/Wall.hpp"
 #include "../CollisionEvent.hpp"
 
@@ -21,6 +21,8 @@ public:
     list <Wall*> walls;
     priority_queue<CollisionEvent> collisionQueue; // Contain all future collisions that would occur
     Paddle paddle;
+    string backgroundPath;
+    int targetPoint;
     int gamePoint;
     int level;
     float currentTime = 0.0f;
@@ -32,6 +34,6 @@ public:
     void addBuff(Ball* newBuff); // Add new buff
     void addEvent(CollisionEvent event);
 private:
-    std::list <Brick*> getLayout(int levelNumber);
+    void getLevelInfo(int levelNumber);
     void recalculateCollisionQueue();
 };

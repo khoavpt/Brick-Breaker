@@ -2,8 +2,6 @@
 #include <SFML\Graphics.hpp>
 #include "Collider.hpp"
 
-using namespace std;
-
 float dotProduct(sf::Vector2f v1, sf::Vector2f v2);
 
 class PlayStateModel;

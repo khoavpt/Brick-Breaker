@@ -1,19 +1,20 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 
 #include "PlayStateModel.hpp"
 #include "../CollisionEvent.hpp"
+#include "../Button.hpp"
 
 class PlayState : public State
 {
 public:
-    PlayState(Game* game_, int level);
+    PlayState(Game* game_, int level, bool isPaused=true);
     ~PlayState();
 
     void handleInput();
     void update(float deltaTime);
     void draw();
     std::string getBackgroundImagePath();
+    sf::Music* getMusic();
     Game* game;
 private:
     bool isPaused = true;
@@ -23,6 +24,7 @@ private:
     sf::Text pauseText;
     sf::Text scoreText;
     sf::Text stageText;
+    Button* restartButton;
 
     PlayStateModel* model;
 };

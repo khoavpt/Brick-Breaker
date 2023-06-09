@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <stack>
 
 class State;
@@ -23,4 +24,7 @@ class Game
         void loadBackgroundImage();
         sf::Texture backgroundTexture;
         sf::Sprite backgroundSprite;
+
+        sf::Music* currentMusic = nullptr;
+        std::map<std::string, sf::Music*> stateMusic; // Contains preloaded music for each state
 };

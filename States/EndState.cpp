@@ -1,4 +1,3 @@
-#include <SFML/Graphics.hpp>
 #include <string>
 
 #include "EndState.hpp"
@@ -9,12 +8,13 @@
 EndState::EndState(Game* game_, int gamePoint, int level)
 {
     this->game = game_;
+    this->stateIdentifier = "EndState";
     this->levelPLayed = level;
     font.loadFromFile("static/8-bit-in.ttf");
 
     result.setFont(font);
     result.setCharacterSize(100);
-    result.setString("Score " + to_string(gamePoint));
+    result.setString("Score " + std::to_string(gamePoint));
     sf::FloatRect resultTextBounds = result.getLocalBounds();
     result.setOrigin(resultTextBounds.left + resultTextBounds.width / 2.0f, resultTextBounds.top + resultTextBounds.height / 2.0f);
     result.setPosition(BOARD_WIDTH / 2.0f, 200.0f);
@@ -68,6 +68,6 @@ void EndState::draw()
 
 std::string EndState::getBackgroundImagePath()
 {
-    return "static/1.png";
+    return "static/state_background/1.png";
 }
 

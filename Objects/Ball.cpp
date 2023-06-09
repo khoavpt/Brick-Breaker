@@ -1,10 +1,8 @@
-#include <SFML\Graphics.hpp>
 #include <cmath>
 
 #include "Ball.hpp"
 #include "../Constants.hpp"
 
-using namespace std;
 
 // Accept two vectors as inputs and return the dot product of them
 float dotProduct(sf::Vector2f v1, sf::Vector2f v2)

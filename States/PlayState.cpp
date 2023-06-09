@@ -1,15 +1,15 @@
-#include <SFML/Graphics.hpp>
-
 #include "PlayState.hpp"
 #include "EndState.hpp"
 #include "../Constants.hpp"
 
 
-PlayState::PlayState(Game* game_, int level):
+PlayState::PlayState(Game* game_, int level, bool isPaused):
     model(new PlayStateModel(level))
 {
     this->game = game_;
+    this->stateIdentifier = "PlayState" + to_string(level);
     this->currentLevel = level;
+    this->isPaused = isPaused;
 
     font.loadFromFile("static/8-bit-in.ttf");
 
@@ -29,10 +29,14 @@ PlayState::PlayState(Game* game_, int level):
     stageText.setCharacterSize(40);
     stageText.setString("Stage " + to_string(model->level));
     stageText.setPosition(460.0f, 10.0f);
+
+    this->restartButton = new Button(sf::Vector2f(300.0f, 725.0f), sf::Vector2f(200.0f, 50.0f), "Restart", 
+                                   sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200), &font);
 }
 
 PlayState::~PlayState()
 {
+    delete restartButton;
     delete model;
 }
 
@@ -54,13 +58,19 @@ void PlayState::update(float deltaTime)
 {
     if(isPaused == true) 
     {
+        restartButton->update(sf::Vector2f(sf::Mouse::getPosition(game->window)));
+        if (restartButton->isPressed)
+        {
+            this->game->popState();
+            this->game->pushState(new PlayState(game, currentLevel, false));
+        }
         return;
     }
 
     model->currentTime += deltaTime;
 
     // Handle events from the collision queue
-    while (!model->collisionQueue.empty() && model->collisionQueue.top().time <= model->currentTime + 0.001f)
+    while (!model->collisionQueue.empty() && model->collisionQueue.top().time < model->currentTime)
     {
         CollisionEvent topEvent = model->collisionQueue.top();
         topEvent.handleEvent(model->collisionQueue, model->currentTime);
@@ -69,8 +79,8 @@ void PlayState::update(float deltaTime)
     model->removeDeletedObjects();
     scoreText.setString("Score " + to_string(model->gamePoint));
     
-    // Load end menu if there are no balls left
-    if (model->balls.size() == 0)
+    // Load end menu if there are no balls left or no if the player reaches the target point
+    if (model->balls.size() == 0 || model->gamePoint >= model->targetPoint)
     {
         this->game->popState();
         this->game->pushState(new EndState(game, model->gamePoint, currentLevel));
@@ -93,7 +103,11 @@ void PlayState::draw()
     }
     game->window.draw(model->paddle.body);
 
-    if(isPaused) game->window.draw(pauseText);
+    if(isPaused)
+    {
+        restartButton->draw(game->window);
+        game->window.draw(pauseText);
+    }
     else
     {
         game->window.draw(scoreText);
@@ -103,7 +117,6 @@ void PlayState::draw()
 
 std::string PlayState::getBackgroundImagePath()
 {
-    if(currentLevel == 1) return "static/3.png";
-    else if(currentLevel == 2) return "static/4.png";
+    return model->backgroundPath;
 }
 

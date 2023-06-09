@@ -1,5 +1,3 @@
-#include <SFML/Graphics.hpp>
-
 #include "LevelState.hpp"
 #include "PlayState.hpp"
 #include "../Constants.hpp"
@@ -7,6 +5,7 @@
 LevelState::LevelState(Game* game_)
 {
     this->game = game_;
+    this->stateIdentifier = "LevelState";
     font.loadFromFile("static/8-bit-in.ttf");
     title.setFont(font);
     title.setCharacterSize(60);
@@ -18,11 +17,11 @@ LevelState::LevelState(Game* game_)
 
     this->level1Button = new Button(sf::Vector2f(150.0f, 350.0f), sf::Vector2f(200.0f, 200.0f), "Level 1", 
                                    sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200), 
-                                   &font, "static/preview_level1.png");
+                                   &font, "static/level_preview/preview_level1.png");
                                    
     this->level2Button = new Button(sf::Vector2f(450.0f, 350.0f), sf::Vector2f(200.0f, 200.0f), "Level 2", 
                                    sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200), 
-                                   &font, "static/preview_level2.png");
+                                   &font, "static/level_preview/preview_level2.png");
 }
 
 LevelState::~LevelState()
@@ -65,6 +64,6 @@ void LevelState::draw()
 
 std::string LevelState::getBackgroundImagePath()
 {
-    return "static/1.png";
+    return "static/state_background/1.png";
 }
 

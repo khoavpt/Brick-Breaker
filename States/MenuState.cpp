@@ -1,5 +1,3 @@
-#include <SFML/Graphics.hpp>
-
 #include "MenuState.hpp"
 #include "LevelState.hpp"
 #include "../Constants.hpp"
@@ -7,7 +5,9 @@
 MenuState::MenuState(Game* game_)
 {
     this->game = game_;
+    this->stateIdentifier = "MenuState";
     font.loadFromFile("static/8-bit-in.ttf");
+
     title.setFont(font);
     title.setCharacterSize(140);
     title.setString("  BRICK\nBREAKER");
@@ -61,6 +61,6 @@ void MenuState::draw()
 
 std::string MenuState::getBackgroundImagePath()
 {
-    return "static/1.png";
+    return "static/state_background/1.png";
 }
 

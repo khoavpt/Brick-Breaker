@@ -5,6 +5,7 @@ class State
 {
 public:
     Game* game;
+    std::string stateIdentifier;
     virtual void handleInput() = 0;
     virtual void update(float deltaTime) = 0;
     virtual void draw() = 0;
@@ -16,6 +17,4 @@ public:
     }
 
     virtual std::string getBackgroundImagePath() = 0;
-    
-
 };

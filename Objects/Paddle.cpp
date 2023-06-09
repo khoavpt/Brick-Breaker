@@ -1,7 +1,4 @@
-
-#include <SFML\Graphics.hpp>
 #include <cmath>
-#include <iostream>
 
 #include "Paddle.hpp"
 #include "../States/PlayStateModel.hpp"

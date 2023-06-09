@@ -1,4 +1,3 @@
-#include <iostream>
 #include <fstream>
 #include <vector>
 #include <sstream>
@@ -16,7 +15,7 @@ PlayStateModel::PlayStateModel(int level):
 
     balls = {new Ball(sf::Vector2f(300.0f, 500.0f), sf::Vector2f(BALL_ORGINAL_VELOCITY_X, BALL_ORGINAL_VELOCITY_Y), 0)};
     walls = {new Wall(0), new Wall(1), new Wall(2), new Wall(3)};
-    bricks = getLayout(this->level);
+    getLevelInfo(level);
 
     // Add every collision events between colliders into collision queue
     for (list<Ball*>::iterator ballIt = balls.begin(); ballIt != balls.end(); ballIt++)
@@ -150,9 +149,8 @@ void PlayStateModel::recalculateCollisionQueue()
     collisionQueue = updateQueue;
 }
 
-std::list<Brick*> PlayStateModel::getLayout(int levelNumber)
+void PlayStateModel::getLevelInfo(int levelNumber)
 {
-    std::list<Brick*> bricks;
     std::ifstream file("Levels/level" + std::to_string(levelNumber) + ".txt");
     std::vector<int> brickLayout;
     std::vector<int> buffLayout;
@@ -179,6 +177,8 @@ std::list<Brick*> PlayStateModel::getLayout(int levelNumber)
             bricks.push_back(new Brick(brickLayout[r * 10 + c], buffLayout[r * 10 + c] , sf::Vector2f(30 + 60 * c, 100 + 30 * r), this));
         }
     }
-    return bricks;
+
+    file >> this->targetPoint;
+    file >> this->backgroundPath;
 }
 
